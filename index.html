@@ -1,0 +1,99 @@
+<!doctype html>
+<html action="html">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<script src="fish-view.js"></script>
+	<script src="lib/template.js"></script>
+</head>
+<body>
+
+
+	<div id="abc"></div>
+
+<button id="b">change data 1</button>
+<button id="c">change data 2</button>
+<button id="d">change data 3</button>
+</body>
+
+
+<script type="text/template" id="a">
+	{$<div>{%abc%}</div>$}
+</script>
+
+<script>
+
+
+var view1 = new FishView({
+	render:function(){
+		document.getElementById("abc").innerHTML = YayaTemplate(this.template).render(this.data);
+	},
+	template:function(){
+		var self = this;
+		setTimeout(function(){
+
+
+			self.setTemplate(document.getElementById("a").innerHTML);
+
+		},1200);
+	},
+	data:function(){
+		var self = this;
+		setTimeout(function(){
+			self.setData({
+				abc:123
+			});
+		},1000);
+	}
+});
+
+
+
+
+
+
+
+document.getElementById("b").onclick = function(){
+	view1.setData(function(){
+		var self = this;
+		setTimeout(function(){
+			self.setData({
+				abc:"ok111"
+			});
+		},2000);	
+	});
+};
+
+document.getElementById("c").onclick = function(){
+	view1.setData(function(){
+		var self = this;
+		setTimeout(function(){
+			self.setData({
+				abc:"ok222"
+			});
+		},1000);	
+	});
+};
+
+
+document.getElementById("d").onclick = function(){
+	view1.setData(function(){
+		var self = this;
+		setTimeout(function(){
+			self.setData({
+				abc:"ok333"
+			});
+		},100);	
+	});
+};
+
+
+
+</script>
+
+<script>
+
+
+
+
+</script>
+</html>
